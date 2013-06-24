@@ -6,6 +6,7 @@ import org.lesnikovskiy.contact.domain.Contact;
 
 public interface ContactService {
 	public void addContact(Contact contact);
+	public Contact getContact(Integer id);
 	public List<Contact> listContact();
 	public void removeContact(Integer id);
 }

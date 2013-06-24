@@ -20,7 +20,7 @@ public class ContactController {
 	private ContactService contactService;
 	
 	@RequestMapping("/index")
-	public String listContacts(Map<String, Object> map) {
+	public String listContacts(Map<String, Object> map) {		
 		map.put("contact", new Contact());
 		map.put("contactList", contactService.listContact());
 		
@@ -37,6 +37,15 @@ public class ContactController {
 		contactService.addContact(contact);
 		
 		return "redirect:/index";
+	}
+	
+	@RequestMapping(value="/edit/{contactId}", method = RequestMethod.GET)
+	public String editContact(@PathVariable("contactId") Integer contactId, Model model) {
+		Contact contact = contactService.getContact(contactId);
+		contact.setFirstname("John");
+		model.addAttribute("contact", contact);
+		
+		return "edit";
 	}
 	
 	@RequestMapping(value="/delete/{contactId}")
