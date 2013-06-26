@@ -19,6 +19,11 @@ public class ContactServiceImpl implements ContactService {
 	}
 	
 	@Transactional
+	public void updateContact(Contact contact) {
+		contactDAO.updateContact(contact);
+	}
+	
+	@Transactional
 	public Contact getContact(Integer id) {
 		return contactDAO.getContact(id);
 	}

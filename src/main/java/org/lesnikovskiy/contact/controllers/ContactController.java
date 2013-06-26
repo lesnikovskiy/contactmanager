@@ -42,10 +42,18 @@ public class ContactController {
 	@RequestMapping(value="/edit/{contactId}", method = RequestMethod.GET)
 	public String editContact(@PathVariable("contactId") Integer contactId, Model model) {
 		Contact contact = contactService.getContact(contactId);
-		contact.setFirstname("John");
 		model.addAttribute("contact", contact);
 		
 		return "edit";
+	}
+	
+	@RequestMapping(value="/edit", method = RequestMethod.POST)
+	public String updateContact(@ModelAttribute("contact") Contact contact, BindingResult result) {
+		if (!result.hasErrors()) {
+			contactService.updateContact(contact);
+		}
+		
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value="/delete/{contactId}")

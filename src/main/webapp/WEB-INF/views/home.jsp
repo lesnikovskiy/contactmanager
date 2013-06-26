@@ -16,7 +16,7 @@
  <div class="page">
 <h2>Contact Manager</h2>
  
-<form:form method="post" action="add" commandName="contact"> 
+<form:form method="post" action="${pageContext.request.contextPath}/add" commandName="contact"> 
     <table class="new-contact">
 	    <tr>
 	        <td><form:label path="firstname"><spring:message code="label.firstname"/></form:label></td>

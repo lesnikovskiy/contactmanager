@@ -9,6 +9,31 @@
 <title>Edit</title>
 </head>
 <body>
-	${contact.firstname}
+	<form:form commandName="contact" action="${pageContext.request.contextPath}/edit" method="post">
+		<table class="new-contact">
+		<form:input path="id" type="hidden" value="${contact.id}" />
+	    <tr>
+	        <td><form:label path="firstname"><spring:message code="label.firstname"/></form:label></td>
+	        <td><form:input path="firstname" value="${contact.firstname}" /></td>
+	    </tr>
+	    <tr>
+	        <td><form:label path="lastname"><spring:message code="label.lastname"/></form:label></td>
+	        <td><form:input path="lastname" value="${contact.lastname}" /></td>
+	    </tr>
+	    <tr>
+	        <td><form:label path="email"><spring:message code="label.email"/></form:label></td>
+	        <td><form:input path="email" value="${contact.email}" /></td>
+	    </tr>
+	    <tr>
+	        <td><form:label path="telephone"><spring:message code="label.telephone"/></form:label></td>
+	        <td><form:input path="telephone" value="${contact.telephone}" /></td>
+	    </tr>
+	    <tr>
+	        <td colspan="2">
+	            <input type="submit" value="<spring:message code="label.addcontact"/>"/>
+	        </td>
+	    </tr>
+	</table> 
+	</form:form>
 </body>
 </html>

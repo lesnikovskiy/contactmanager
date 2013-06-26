@@ -17,9 +17,13 @@ public class ContactDAOImpl implements ContactDAO {
 		sessionFactory.getCurrentSession().save(contact);
 	}
 	
+	public void updateContact(Contact contact) {
+		sessionFactory.getCurrentSession().update(contact);
+	}
+	
 	public Contact getContact(Integer id) {
-		Session session = sessionFactory.getCurrentSession();
-		Contact contact = (Contact) session.load(Contact.class, id);
+		Session session = sessionFactory.getCurrentSession();		
+		Contact contact = (Contact) session.createQuery("from Contact where id=:id").setInteger("id", id).uniqueResult();
 		
 		return contact;
 	}
@@ -30,9 +34,8 @@ public class ContactDAOImpl implements ContactDAO {
 	}
 
 	public void removeContact(Integer id) {
-		Contact contact = this.getContact(2);
+		Contact contact = this.getContact(id);
 		if (contact != null)
 			sessionFactory.getCurrentSession().delete(contact);
 	}
-
 }
